@@ -1,0 +1,30 @@
+{
+  "name": "radio-id3",
+  "version": "1.0.0",
+  "description": "A simple library to get metadata from icecast/shoutcast streams",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w1lliams/radio-id3.git"
+  },
+  "keywords": [
+    "shoutcast",
+    "icecast",
+    "ID3",
+    "metadata",
+    "song"
+  ],
+  "author": "w1lliams <melnichuk.lm@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/w1lliams/radio-id3/issues"
+  },
+  "homepage": "https://github.com/w1lliams/radio-id3#readme",
+  "devDependencies": {
+    "typescript": "^3.6.3"
+  }
+}
