@@ -31,6 +31,7 @@
   "homepage": "https://github.com/w1lliams/radio-id3#readme",
   "devDependencies": {
     "@types/got": "^9.6.7",
+    "@types/lodash": "^4.14.141",
     "prettier": "^1.18.2",
     "ts-node": "^8.4.1",
     "tslint": "^5.20.0",
@@ -40,6 +41,8 @@
   },
   "dependencies": {
     "csvtojson": "^2.0.10",
-    "got": "^9.6.0"
+    "fast-xml-parser": "^3.13.0",
+    "got": "^9.6.0",
+    "lodash": "^4.17.15"
   }
 }

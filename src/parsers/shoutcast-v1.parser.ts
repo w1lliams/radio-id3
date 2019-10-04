@@ -1,10 +1,10 @@
 import * as csvToJson from 'csvtojson';
 import * as got from 'got';
 import { Metadata } from '../types/metadata';
+import { normalizeStreamUrl } from '../utils/normalize-stream-url';
 
 export async function shoutcastV1Parser(url: string): Promise<Metadata> {
-  const normalizedUrl = url.replace(/[;/]+$/g, '');
-  const { body } = await got(`${normalizedUrl}/7.html`, {
+  const { body } = await got(`${normalizeStreamUrl(url)}/7.html`, {
     timeout: 3000,
     headers: {
       userAgent:
