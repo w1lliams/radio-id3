@@ -5,7 +5,7 @@ import { Metadata } from '../types/metadata';
 import { normalizeStreamUrl } from '../utils/normalize-stream-url';
 
 export async function shoutcastV2Parser(url: string): Promise<Metadata> {
-  const { body } = await got(`${normalizeStreamUrl(url)}/stats`);
+  const { body } = await got(`${normalizeStreamUrl(url)}/stats`, { timeout: 3000 });
   const data = parse(body);
   const bitrate = get(data, 'SHOUTCASTSERVER.BITRATE');
   const listeners = get(data, 'SHOUTCASTSERVER.CURRENTLISTENERS');
