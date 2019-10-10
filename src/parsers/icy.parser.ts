@@ -16,7 +16,7 @@ class IcyReadStream extends Writable {
   public _write(chunk: Buffer, encoding: string, callback: (error?: Error | null) => void) {
     if (this.metadata) {
       this.metadata = Buffer.concat([this.metadata, chunk.slice(0, this.metadata.length - this.metadataSize)]);
-    } else if (this.byteRead + chunk.length >= this.icyMetaint) {
+    } else if (this.byteRead + chunk.length > this.icyMetaint) {
       const start = this.icyMetaint - this.byteRead;
       this.metadataSize = chunk.readUIntBE(start, 1) * 16;
       this.metadata = chunk.slice(start + 1, start + 1 + this.metadataSize);
