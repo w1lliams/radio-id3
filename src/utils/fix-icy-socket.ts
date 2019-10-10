@@ -4,7 +4,7 @@ import * as assert from 'assert';
 const HttpHead = Buffer.from('HTTP/1.0');
 
 function makeChunk(chunk: Buffer): Buffer {
-  assert(chunk.length >= 3, 'buffer too small! ' + chunk.length);
+  assert(chunk.length >= 3, `buffer too small! ${chunk.length}`);
   if (/icy/i.test(chunk.slice(0, 3).toString())) {
     const b = Buffer.alloc(chunk.length + HttpHead.length - 'icy'.length);
     let i = HttpHead.copy(b);
