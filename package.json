@@ -2,12 +2,18 @@
   "name": "radio-id3",
   "version": "1.0.0",
   "description": "A simple library to get metadata from icecast/shoutcast streams",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json"
+    "lint": "tslint -p tsconfig.json",
+    "prepare" : "npm run build",
+    "prepublishOnly" : "npm test && npm run lint",
+    "preversion" : "npm run lint",
+    "version" : "npm run format && git add -A src",
+    "postversion" : "git push && git push --tags"
   },
   "files": [
     "lib/**/*"
@@ -21,7 +27,8 @@
     "icecast",
     "ID3",
     "metadata",
-    "song"
+    "song",
+    "typescript"
   ],
   "author": "w1lliams <melnichuk.lm@gmail.com>",
   "license": "MIT",
