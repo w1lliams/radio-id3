@@ -38,7 +38,9 @@ class IcyReadStream extends Writable {
         (acc, val) => {
           const row = val.split('=');
           if (row.length === 2) {
-            acc[row[0].trim()] = row[1].trim().replace(/^['"](.*)['"]$/, '$1');
+            const key = row[0].trim();
+            const value = row[1].trim().replace(/^['"](.*)['"]$/, '$1');
+            acc[key.toLowerCase() === 'streamtitle' ? 'title' : key] = value;
           }
           return acc;
         },
@@ -62,10 +64,11 @@ export async function icyParser(url: string): Promise<Metadata> {
       .once('request', (req: ClientRequest) => req.once('socket', fixIcySocket))
       .once('response', (res: IncomingMessage) => {
         const icyMetaint = Number(res.headers['icy-metaint']);
+        const bitrate = Number(res.headers['icy-br']);
         if (icyMetaint > 0) {
           const icyStream = new IcyReadStream(icyMetaint);
-          res.pipe(icyStream).on('metadata', metadata => {
-            resolve(metadata);
+          res.pipe(icyStream).on('metadata', ({ title }) => {
+            resolve({ bitrate: bitrate || undefined, title, type: 'ICY' });
             stream.end(() => stream.destroy());
           });
         } else {
